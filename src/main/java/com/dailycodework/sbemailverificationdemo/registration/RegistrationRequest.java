@@ -1,2 +1,9 @@
-package com.dailycodework.sbemailverificationdemo.registration;public class RegistrationRequest {
+package com.dailycodework.sbemailverificationdemo.registration;
+
+public record RegistrationRequest(String firstName,
+                                  String lastName,
+                                  String email,
+                                  String password,
+                                  String role) {
+
 }
