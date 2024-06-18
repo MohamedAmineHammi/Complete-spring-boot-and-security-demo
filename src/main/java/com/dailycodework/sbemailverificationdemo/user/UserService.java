@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +19,6 @@ public class UserService implements IUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final VerificationTokenRepository tokenRepository;
-
     @Override
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -27,9 +27,9 @@ public class UserService implements IUserService {
     @Override
     public User registerUser(RegistrationRequest request) {
         Optional<User> user = this.findByEmail(request.email());
-        if (user.isPresent()) {
+        if (user.isPresent()){
             throw new UserAlreadyExistsException(
-                    "User with email " + request.email() + " already exists");
+                    "User with email "+request.email() + " already exists");
         }
         var newUser = new User();
         newUser.setFirstName(request.firstName());
@@ -49,23 +49,30 @@ public class UserService implements IUserService {
     public void saveUserVerificationToken(User theUser, String token) {
         var verificationToken = new VerificationToken(token, theUser);
         tokenRepository.save(verificationToken);
-
     }
-
     @Override
     public String validateToken(String theToken) {
         VerificationToken token = tokenRepository.findByToken(theToken);
-        if(token == null) {
+        if(token == null){
             return "Invalid verification token";
         }
         User user = token.getUser();
         Calendar calendar = Calendar.getInstance();
-        if((token.getExpirationTime().getTime() - calendar.getTime().getTime()) < 0) {
-            tokenRepository.delete(token);
-            return "Token already expired";
+        if ((token.getExpirationTime().getTime()-calendar.getTime().getTime())<= 0){
+            return "Verification link already expired," +
+                    " Please, click the link below to receive a new verification link";
         }
         user.setEnabled(true);
-        userRepository.save(user);;
+        userRepository.save(user);
         return "valid";
+    }
+
+    @Override
+    public VerificationToken generateNewVerificationToken(String oldToken) {
+        VerificationToken verificationToken = tokenRepository.findByToken(oldToken);
+        var tokenExpirationTime = new VerificationToken();
+        verificationToken.setToken(UUID.randomUUID().toString());
+        verificationToken.setExpirationTime(tokenExpirationTime.getTokenExpirationTime());
+        return tokenRepository.save(verificationToken);
     }
 }

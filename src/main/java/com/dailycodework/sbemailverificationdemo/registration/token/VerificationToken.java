@@ -16,10 +16,10 @@ import java.util.Date;
 public class VerificationToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long token_id;
     private String token;
     private Date expirationTime;
-    private static final int EXPIRATION_TIME = 15;
+    private static final int EXPIRATION_TIME = 1;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -41,7 +41,7 @@ public class VerificationToken {
     public Date getTokenExpirationTime() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(new Date().getTime());
-        calendar.add(calendar.MINUTE, EXPIRATION_TIME);
+        calendar.add(Calendar.MINUTE, EXPIRATION_TIME);
         return new Date(calendar.getTime().getTime());
     }
 }
