@@ -57,15 +57,12 @@ L'utilisateur s'inscrit avec son email, et un email de vérification est envoyé
 <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/New%20Token%20Sended.png" width="350" height="200"> 
 
 
-### Email de vérification nouveau Token
+### Email vérifié avec nouveau Token
 
   
-  <img src="https://github.com/MohamedAmineHammi/spring-mvc-web-app-with-thymeleaf/blob/master/templates/Users.png" width="350" height="200">
+  <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/Email%20Verified.png" width="350" height="200">
 
- **Édition d'une entité** :
-  
-   <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/Email%20Verified.png" width="350" height="200">
-
+ 
 ## Technologies
 
 - Java 17
