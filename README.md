@@ -2,7 +2,7 @@
 
 
 ## Description
-Ce projet est une application complète utilisant Spring Boot 3 et Spring Security 6 pour démontrer le flux d'enregistrement et de connexion des utilisateurs, ainsi que la vérification par e-mail et la réexpédition des tokens de vérification expirés et la réinitialisation du mot de passe oublié
+Ce projet est une application complète utilisant Spring Boot 3 et Spring Security 6 pour démontrer le flux d'enregistrement et de connexion des utilisateurs, ainsi que la vérification par e-mail et la réexpédition des tokens de vérification expirés et la réinitialisation du mot de passe oublié et le changement du mot de passe.
 
 
 ## Fonctionnalités
@@ -12,6 +12,7 @@ Ce projet est une application complète utilisant Spring Boot 3 et Spring Securi
 - **Vérification par e-mail: Envoie un e-mail de vérification après l'enregistrement.**
 - **Réexpédition des tokens expirés: Permet aux utilisateurs de demander un nouveau token de vérification si le précédent a expiré.**
 - **la réinitialisation du mot de passe oublié**
+- **le changement du mot de passe**
 
 ## Prérequis
 
@@ -79,6 +80,10 @@ L'utilisateur s'inscrit avec son email, et un email de vérification est envoyé
   **Jeton de réinitialisation de mot de passe généré dans la base de données**
   
   <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/Password%20ResetToken%20generated%20in%20DB.png" width="350" height="200">
+
+  **Test de changement du mot de passe avec Postman**
+  
+  <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/Test%20Change%20Password%20with%20Postman.png" width="350" height="200">
 
  
 ## Technologies
