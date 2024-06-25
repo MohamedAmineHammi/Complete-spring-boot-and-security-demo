@@ -2,7 +2,6 @@ package com.dailycodework.sbemailverificationdemo.user;
 
 import com.dailycodework.sbemailverificationdemo.exception.UserAlreadyExistsException;
 import com.dailycodework.sbemailverificationdemo.registration.RegistrationRequest;
-import com.dailycodework.sbemailverificationdemo.registration.password.PasswordResetRequest;
 import com.dailycodework.sbemailverificationdemo.registration.password.PasswordResetTokenService;
 import com.dailycodework.sbemailverificationdemo.registration.token.VerificationToken;
 import com.dailycodework.sbemailverificationdemo.registration.token.VerificationTokenRepository;
@@ -10,10 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+
 
 @Service
 @RequiredArgsConstructor
@@ -75,31 +72,33 @@ public class UserService implements IUserService {
     @Override
     public VerificationToken generateNewVerificationToken(String oldToken) {
         VerificationToken verificationToken = tokenRepository.findByToken(oldToken);
-        var tokenExpirationTime = new VerificationToken();
+        var verificationTokenTime = new VerificationToken();
         verificationToken.setToken(UUID.randomUUID().toString());
-        verificationToken.setExpirationTime(tokenExpirationTime.getTokenExpirationTime());
+        verificationToken.setExpirationTime(verificationTokenTime.getTokenExpirationTime());
         return tokenRepository.save(verificationToken);
     }
 
-    @Override
-    public void createPasswordResetTokenForUser(User user, String passwordToken) {
-        passwordResetTokenService.createPasswordResetTokenForUser(user, passwordToken);
-
+    public void changePassword(User theUser, String newPassword) {
+        theUser.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(theUser);
     }
 
     @Override
-    public String validatePasswordResetToken(String passwordResetToken) {
-        return passwordResetTokenService.validatePasswordResetToken(passwordResetToken);
+    public String validatePasswordResetToken(String token) {
+        return passwordResetTokenService.validatePasswordResetToken(token);
     }
 
     @Override
-    public User findUserByPasswordToken(String passwordResetToken) {
-        return passwordResetTokenService.findUserByPasswordToken(passwordResetToken).get();
+    public User findUserByPasswordToken(String token) {
+        return passwordResetTokenService.findUserByPasswordToken(token).get();
     }
 
     @Override
-    public void resetUserPassword(User user, String newPassword) {
-        user.setPassword(passwordEncoder.encode(newPassword));
-        userRepository.save(user);
+    public void createPasswordResetTokenForUser(User user, String passwordResetToken) {
+        passwordResetTokenService.createPasswordResetTokenForUser(user, passwordResetToken);
+    }
+    @Override
+    public boolean oldPasswordIsValid(User user, String oldPassword){
+        return passwordEncoder.matches(oldPassword, user.getPassword());
     }
 }

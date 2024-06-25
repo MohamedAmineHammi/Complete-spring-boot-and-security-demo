@@ -4,8 +4,8 @@ package com.dailycodework.sbemailverificationdemo.registration.password;
 import lombok.Data;
 
 @Data
-public class PasswordResetRequest {
+public class PasswordRequestUtil {
     private String email;
+    private String oldPassword;
     private String newPassword;
-    private String confirmPassword;
 }
