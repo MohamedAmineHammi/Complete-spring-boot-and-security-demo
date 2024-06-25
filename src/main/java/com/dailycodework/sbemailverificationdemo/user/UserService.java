@@ -2,6 +2,8 @@ package com.dailycodework.sbemailverificationdemo.user;
 
 import com.dailycodework.sbemailverificationdemo.exception.UserAlreadyExistsException;
 import com.dailycodework.sbemailverificationdemo.registration.RegistrationRequest;
+import com.dailycodework.sbemailverificationdemo.registration.password.PasswordResetRequest;
+import com.dailycodework.sbemailverificationdemo.registration.password.PasswordResetTokenService;
 import com.dailycodework.sbemailverificationdemo.registration.token.VerificationToken;
 import com.dailycodework.sbemailverificationdemo.registration.token.VerificationTokenRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,9 @@ public class UserService implements IUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final VerificationTokenRepository tokenRepository;
+    private final PasswordResetTokenService passwordResetTokenService;
+
+
     @Override
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -74,5 +79,27 @@ public class UserService implements IUserService {
         verificationToken.setToken(UUID.randomUUID().toString());
         verificationToken.setExpirationTime(tokenExpirationTime.getTokenExpirationTime());
         return tokenRepository.save(verificationToken);
+    }
+
+    @Override
+    public void createPasswordResetTokenForUser(User user, String passwordToken) {
+        passwordResetTokenService.createPasswordResetTokenForUser(user, passwordToken);
+
+    }
+
+    @Override
+    public String validatePasswordResetToken(String passwordResetToken) {
+        return passwordResetTokenService.validatePasswordResetToken(passwordResetToken);
+    }
+
+    @Override
+    public User findUserByPasswordToken(String passwordResetToken) {
+        return passwordResetTokenService.findUserByPasswordToken(passwordResetToken).get();
+    }
+
+    @Override
+    public void resetUserPassword(User user, String newPassword) {
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 }
