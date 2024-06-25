@@ -65,15 +65,19 @@ L'utilisateur s'inscrit avec son email, et un email de vérification est envoyé
 
   ### la réinitialisation du mot de passe oublié
   **Test de demande de réinitialisation de demande de mot de passe avec Postman**
+  
   <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/ResetPassword%20Test%20with%20Postman.png" width="350" height="200">
 
-   **E-mail de vérification de demande de réinitialisation de mot de passe**
+  **E-mail de vérification de demande de réinitialisation de mot de passe**
+  
   <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/Password%20Reset%20Request%20Verification%20Email.png" width="350" height="200">
 
   **Test de réinitialisation du mot de passe avec Postman**
-    <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/ResetPassword%20Test%20with%20Postman.png" width="350" height="200">
+  
+  <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/ResetPassword%20Test%20with%20Postman.png" width="350" height="200">
 
   **Jeton de réinitialisation de mot de passe généré dans la base de données**
+  
   <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/Password%20ResetToken%20generated%20in%20DB.png" width="350" height="200">
 
  
