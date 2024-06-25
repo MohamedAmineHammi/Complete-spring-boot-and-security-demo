@@ -2,7 +2,7 @@
 
 
 ## Description
-Ce projet est une application complète utilisant Spring Boot 3 et Spring Security 6 pour démontrer le flux d'enregistrement et de connexion des utilisateurs, ainsi que la vérification par e-mail et la réexpédition des tokens de vérification expirés.
+Ce projet est une application complète utilisant Spring Boot 3 et Spring Security 6 pour démontrer le flux d'enregistrement et de connexion des utilisateurs, ainsi que la vérification par e-mail et la réexpédition des tokens de vérification expirés et la réinitialisation du mot de passe oublié
 
 
 ## Fonctionnalités
@@ -11,6 +11,7 @@ Ce projet est une application complète utilisant Spring Boot 3 et Spring Securi
 - **Connexion des utilisateurs: Permet aux utilisateurs existants de se connecter.**
 - **Vérification par e-mail: Envoie un e-mail de vérification après l'enregistrement.**
 - **Réexpédition des tokens expirés: Permet aux utilisateurs de demander un nouveau token de vérification si le précédent a expiré.**
+- **la réinitialisation du mot de passe oublié**
 
 ## Prérequis
 
@@ -42,7 +43,7 @@ Ce projet est une application complète utilisant Spring Boot 3 et Spring Securi
 
 ## Utilisation
 
-### Registration Test with POSTMAN
+### Test de registration avec POSTMAN
 <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/Registration%20Test%20with%20POSTMAN.png" width="350" height="200"> 
 
 ### Inscription et Vérification par Email / Cas d'Expiration du Token
@@ -61,6 +62,23 @@ L'utilisateur s'inscrit avec son email, et un email de vérification est envoyé
 
   
   <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/Email%20Verified.png" width="350" height="200">
+
+  ### la réinitialisation du mot de passe oublié
+  **Test de demande de réinitialisation de demande de mot de passe avec Postman**
+  
+  <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/ResetPassword%20Test%20with%20Postman.png" width="350" height="200">
+
+  **E-mail de vérification de demande de réinitialisation de mot de passe**
+  
+  <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/Password%20Reset%20Request%20Verification%20Email.png" width="350" height="200">
+
+  **Test de réinitialisation du mot de passe avec Postman**
+  
+  <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/ResetPassword%20Test%20with%20Postman.png" width="350" height="200">
+
+  **Jeton de réinitialisation de mot de passe généré dans la base de données**
+  
+  <img src="https://github.com/MohamedAmineHammi/Complete-spring-boot-and-security-demo/blob/master/Password%20ResetToken%20generated%20in%20DB.png" width="350" height="200">
 
  
 ## Technologies
